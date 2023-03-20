@@ -1,9 +1,8 @@
 package com.example.jpa.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Email;
+import jakarta.persistence.*;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Size;
 import java.io.Serializable;
 
 @Entity
@@ -13,19 +12,20 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "first_name")
     @NotNull
     @Size(max = 65)
-    @Column(name = "first_name")
     private String firstName;
 
-    @Size(max = 65)
     @Column(name = "last_name")
+    @NotNull
+    @Size(max = 65)
     private String lastName;
 
-    @NotNull
-    @Email
-    @Size(max = 100)
     @Column(unique = true)
+    @NotNull
+    @Size(max = 100)
+    @Email
     private String email;
 
     @NotNull
@@ -33,23 +33,21 @@ public class User implements Serializable {
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
+            cascade = CascadeType.ALL,
             mappedBy = "user")
     private UserProfile userProfile;
 
-    // Hibernate requires a no-arg constructor
-    public User() {
+    public User(){
 
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(Long id, String firstName, String lastName, String email, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
-
-    // Getters and Setters (Omitted for brevity)
 
     public Long getId() {
         return id;
@@ -89,13 +87,5 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserProfile getUserProfile() {
-        return userProfile;
-    }
-
-    public void setUserProfile(UserProfile userProfile) {
-        this.userProfile = userProfile;
     }
 }

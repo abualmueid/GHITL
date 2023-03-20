@@ -1,7 +1,7 @@
 package com.example.jpa.model;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,12 +16,12 @@ public class UserProfile implements Serializable {
     @Size(max = 15)
     private String phoneNumber;
 
-    @Enumerated(EnumType.STRING)
     @Column(length = 10)
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "dob")
+    @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
     @Size(max = 100)
@@ -29,9 +29,6 @@ public class UserProfile implements Serializable {
 
     @Size(max = 100)
     private String address2;
-
-    @Size(max = 100)
-    private String street;
 
     @Size(max = 100)
     private String city;
@@ -50,26 +47,22 @@ public class UserProfile implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public UserProfile() {
+    public UserProfile(){
 
     }
 
-    public UserProfile(String phoneNumber, Gender gender, Date dateOfBirth,
-                       String address1, String address2, String street, String city,
-                       String state, String country, String zipCode) {
+    public UserProfile(Long id, String phoneNumber, Gender gender, Date dateOfBirth, String address1, String address2, String city, String state, String country, String zipCode) {
+        this.id = id;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address1 = address1;
         this.address2 = address2;
-        this.street = street;
         this.city = city;
         this.state = state;
         this.country = country;
         this.zipCode = zipCode;
     }
-
-    // Getters and Setters (Omitted for brevity)
 
     public Long getId() {
         return id;
@@ -119,14 +112,6 @@ public class UserProfile implements Serializable {
         this.address2 = address2;
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
     public String getCity() {
         return city;
     }
@@ -157,13 +142,5 @@ public class UserProfile implements Serializable {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
