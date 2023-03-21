@@ -48,12 +48,11 @@ public class UserProfile implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public UserProfile(){
+    public UserProfile(String s, Gender male, Date time, String s1, String s2, String s3, String bangalore, String karnataka, String india, String s4){
 
     }
 
-    public UserProfile(Long id, String phoneNumber, Gender gender, Date dateOfBirth, String address1, String address2, String city, String state, String country, String zipCode) {
-        this.id = id;
+    public UserProfile(String phoneNumber, Gender gender, Date dateOfBirth, String address1, String address2, String city, String state, String country, String zipCode) {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
@@ -63,14 +62,6 @@ public class UserProfile implements Serializable {
         this.state = state;
         this.country = country;
         this.zipCode = zipCode;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getPhoneNumber() {
@@ -143,5 +134,9 @@ public class UserProfile implements Serializable {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
