@@ -13,7 +13,7 @@ public class UserProfile implements Serializable {
     private Long id;
 
     @Column(name = "phone_number")
-    @Size(max = 15)
+    //@Size(max = 15)
     private String phoneNumber;
 
     @Column(length = 10)
@@ -24,23 +24,23 @@ public class UserProfile implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 
-    @Size(max = 100)
+    //@Size(max = 100)
     private String address1;
 
-    @Size(max = 100)
+    //@Size(max = 100)
     private String address2;
 
-    @Size(max = 100)
+    //@Size(max = 100)
     private String city;
 
-    @Size(max = 100)
+    //@Size(max = 100)
     private String state;
 
-    @Size(max = 100)
+    //@Size(max = 100)
     private String country;
 
     @Column(name = "zip_code")
-    @Size(max = 32)
+    //@Size(max = 32)
     private String zipCode;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
