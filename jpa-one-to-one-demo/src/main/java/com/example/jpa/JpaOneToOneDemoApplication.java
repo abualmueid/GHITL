@@ -28,6 +28,7 @@ public class JpaOneToOneDemoApplication implements CommandLineRunner {
 		System.out.println("Hello World");
 	}
 
+	// Added this file for study purpose
 	public void appendUser(){
 		// Create a User instance
 		User user = new User("Abu Al", "Mueid", "abualmueid24@gmail.com",
@@ -61,7 +62,7 @@ public class JpaOneToOneDemoApplication implements CommandLineRunner {
 		//=========================================
 
 		// Create a User instance
-		User user = new User("Rajeev", "Singh", "rajeev@callicoder.com",
+		User user = new User("Rajeev", "Singh", "rajeev100@callicoder.com",
 				"MY_SUPER_SECRET_PASSWORD");
 
 		Calendar dateOfBirth = Calendar.getInstance();
@@ -79,7 +80,9 @@ public class JpaOneToOneDemoApplication implements CommandLineRunner {
 		userProfile.setUser(user);
 
 		// Save Parent Reference (which will save the child as well)
+		//userRepository.save(user);
 		userRepository.save(user);
+
 		//userRepository.saveAndFlush(user);
 
 		//=========================================
