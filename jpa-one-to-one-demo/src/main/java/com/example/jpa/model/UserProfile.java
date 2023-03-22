@@ -32,6 +32,9 @@ public class UserProfile implements Serializable {
     private String address2;
 
     @Size(max = 100)
+    private String street;
+
+    @Size(max = 100)
     private String city;
 
     @Size(max = 100)
@@ -48,16 +51,19 @@ public class UserProfile implements Serializable {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    public UserProfile(String s, Gender male, Date time, String s1, String s2, String s3, String bangalore, String karnataka, String india, String s4){
+    public UserProfile(){
 
     }
 
-    public UserProfile(String phoneNumber, Gender gender, Date dateOfBirth, String address1, String address2, String city, String state, String country, String zipCode) {
+    public UserProfile(String phoneNumber, Gender gender, Date dateOfBirth,
+                       String address1, String address2, String street, String city,
+                       String state, String country, String zipCode) {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.dateOfBirth = dateOfBirth;
         this.address1 = address1;
         this.address2 = address2;
+        this.street = street;
         this.city = city;
         this.state = state;
         this.country = country;
