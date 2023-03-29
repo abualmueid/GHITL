@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CommentController {
+
     @Autowired
     private CommentRepository commentRepository;
 
@@ -20,16 +21,18 @@ public class CommentController {
     private PostRepository postRepository;
 
     @GetMapping("/posts/{postId}/comments")
-    public Page<Comment> getAllCommentsByPostId(@PathVariable (value = "postId") Long postId, @Valid @RequestBody Pageable pageable){
+    public Page<Comment> getAllCommentsByPostId(@PathVariable (value = "postId") Long postId,
+                                                Pageable pageable) {
         return commentRepository.findByPostId(postId, pageable);
     }
 
     @PostMapping("/posts/{postId}/comments")
-    public Comment createComment(@PathVariable Long postId, @Valid @RequestBody Comment comment){
+    public Comment createComment(@PathVariable (value = "postId") Long postId,
+                                 @Valid @RequestBody Comment comment) {
         return postRepository.findById(postId).map(post -> {
             comment.setPost(post);
             return commentRepository.save(comment);
-        }).orElseThrow(() -> new ResourceNotFoundException("Post Id " + postId + " not found."));
+        }).orElseThrow(() -> new ResourceNotFoundException("PostId " + postId + " not found"));
     }
 
     @PutMapping("/posts/{postId}/comments/{commentId}")
@@ -41,7 +44,7 @@ public class CommentController {
         }
 
         return commentRepository.findById(commentId).map(comment -> {
-            comment.setCommentText(commentRequest.getCommentText());
+            comment.setText(commentRequest.getText());
             return commentRepository.save(comment);
         }).orElseThrow(() -> new ResourceNotFoundException("CommentId " + commentId + "not found"));
     }

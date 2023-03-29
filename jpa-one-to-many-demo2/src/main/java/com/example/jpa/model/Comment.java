@@ -8,7 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "comments")
-public class Comment extends AuditModel{
+public class Comment extends AuditModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,6 +23,8 @@ public class Comment extends AuditModel{
     @JsonIgnore
     private Post post;
 
+    // Getters and Setters (Omitted for brevity)
+
     public Long getId() {
         return id;
     }
@@ -31,11 +33,11 @@ public class Comment extends AuditModel{
         this.id = id;
     }
 
-    public String getCommentText() {
+    public String getText() {
         return commentText;
     }
 
-    public void setCommentText(String commentText) {
+    public void setText(String commentText) {
         this.commentText = commentText;
     }
 
