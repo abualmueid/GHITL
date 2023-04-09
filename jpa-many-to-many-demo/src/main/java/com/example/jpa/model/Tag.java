@@ -17,7 +17,7 @@ public class Tag {
 
     @NotNull
     @Size(max = 100)
-    //@NaturalId
+    @NaturalId
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY,
